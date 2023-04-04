@@ -1,10 +1,23 @@
 ```js
-//META{"name":"Channel Logger","version":"1.0.0","description":"Logs messages sent to a specific channel","author":"faintt#1150"}*//
+//META{"name":"Channel Logger","version":"1.0.0","description":"Logs messages sent to a specific channel","author":"faint#1150"}*//
 
-const channelId = ''; //my clipboard broke icouldnt copy
+const channelId = 'INSERT_CHANNEL_ID_HERE';
 
-BdApi.on('sendMessage', (event) => {
+const messageLog = (event) => {
   if (event.channelId === channelId) {
     console.log(`[${new Date().toISOString()}] ${event.message}`);
   }
-});```
+};
+
+const plugin = class {
+  start() {
+    BdApi.on('sendMessage', messageLog);
+  }
+
+  stop() {
+    BdApi.off('sendMessage', messageLog);
+  }
+};
+
+module.exports = plugin;
+```
