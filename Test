@@ -1,3 +1,4 @@
+```js
 //META{"name":"Channel Logger","version":"1.0.0","description":"Logs messages sent to a specific channel","author":"faintt#1150"}*//
 
 const channelId = ''; //my clipboard broke icouldnt copy
@@ -6,4 +7,4 @@ BdApi.on('sendMessage', (event) => {
   if (event.channelId === channelId) {
     console.log(`[${new Date().toISOString()}] ${event.message}`);
   }
-});
+});```
