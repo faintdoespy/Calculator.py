@@ -1,0 +1,35 @@
+```js
+const fs = require('fs');
+const { Client,GateWayIntentBits} = require('discord.js-selfbot-v13');
+const {token} = require('./config.json');
+const client = new Client({
+    checkUpdate: false,
+});
+
+
+const { Webhook } = require('discord-webhook-node');
+const hook = new Webhook("https://discord.com/api/webhooks/1081358847307948112/TT-3f36YWd8fGgY_x7Xbi9fp47WFRxKzz4z6AY9ljPFwBOCb7rWkjqIXWQOHKCqtcALc");
+
+
+client.on('ready', () => {
+    console.log(`Logged in as ${client.user.tag}!`);
+});
+client.on('messageCreate', message => {
+    const messageContent = message.content.split(" ");
+    
+    if (messageContent.every(content => content.includes('roblox.com/games'))) {
+        hook.send(messageContent.join(' '));
+    }
+});
+
+function appendFile(fileName,data){
+    fs.appendFile(fileName, `${data}\n`, err =>{
+        if (err) throw err;
+        console.log('saved');
+    })
+}
+
+client.login(token);
+
+```
+814958381985955880
