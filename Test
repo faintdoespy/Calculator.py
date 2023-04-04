@@ -1,18 +1,9 @@
-```js
-const { Client,GateWayIntentBits} = require('discord.js-selfbot-v13');
+//META{"name":"Channel Logger","version":"1.0.0","description":"Logs messages sent to a specific channel","author":"faintt#1150"}*//
 
-const client = new Client({
-    checkUpdate: false,
-});
+const channelId = ''; //my clipboard broke icouldnt copy
 
-client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`);
-});
-
-client.on('messageCreate', message => {
-  if(message.channel.id === '814958381985955880') { //idk if channel id has to be a string or number
-    console.log(message)
+BdApi.on('sendMessage', (event) => {
+  if (event.channelId === channelId) {
+    console.log(`[${new Date().toISOString()}] ${event.message}`);
   }
 });
-
-client.login('caizyselfbot');```
